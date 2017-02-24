@@ -103,9 +103,9 @@ test('dummy', function (t) {
     var renderedTree = TestUtils.renderIntoDocument(vNodeTree);
     var result1 = TestUtils.findRenderedDOMElementWithClass(renderedTree, 'foo');
     var result2 = TestUtils.findRenderedDOMElementWithTag(renderedTree, 'div');
-    t.equal(result1 instanceof HTMLElement, true);
-    t.equal(result1, result2);
-    t.equal('foo', 'foo');
+    t.notEqual(renderedTree, undefined, 'renderedTree is not undefined');
+    t.equal(result1.className, 'foo', 'result1 has className of "foo"');
+    t.equal(result1, result2, 'result1 === result2');
     t.end();
 });
 

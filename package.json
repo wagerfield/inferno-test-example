@@ -4,7 +4,6 @@
   "description": "Writing tests for Inferno",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
     "test": "webpack && tape test/setup.js build/bundle.js | tap-spec"
   },
   "repository": {
