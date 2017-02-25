@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
-    "module": "commonjs",
     "sourceMap": true,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "module": "es6",
     "target": "es6"
-  }
+  },
+  "include": [
+		"source/**/*"
+  ]
 }

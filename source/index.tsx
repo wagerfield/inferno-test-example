@@ -1,6 +1,6 @@
 import Component from 'inferno-component'
-import * as TestUtils from 'inferno-test-utils'
-import * as test from 'tape'
+import TestUtils from 'inferno-test-utils'
+import test from 'tape'
 
 test('renderIntoDocument', (t) => {
   const vNodeTree = <div className="foo">Abc</div>
@@ -14,10 +14,10 @@ test('renderIntoDocument', (t) => {
 })
 
 test('setState', (t) => {
-
+  
   class TestComponent extends Component<any, any> {
-    constructor(props) {
-      super(props)
+    constructor(props, context) {
+      super(props, context)
       this.state = {
         className: props.className
       }
@@ -30,6 +30,17 @@ test('setState', (t) => {
   let componentRef = null
   const vNodeTree = <TestComponent className="foo" ref={ref => componentRef = ref}/>
   const renderedTree = TestUtils.renderIntoDocument(vNodeTree)
+
+  const result1 = TestUtils.findRenderedDOMElementWithClass(renderedTree, 'foo')
+  t.equal(result1.className, 'foo', 'result1 has className of "foo"')
+
+  componentRef.setState({ className: 'bar' })
+
+  const result2 = TestUtils.findRenderedDOMElementWithClass(renderedTree, 'foo')
+  t.equal(result2, undefined, 'result2 does not have className of "foo"')
+
+  const result3 = TestUtils.findRenderedDOMElementWithClass(renderedTree, 'bar')
+  t.equal(result3.className, 'bar', 'result3 has className of "bar"')
 
   t.end()
 })
